@@ -2,18 +2,14 @@ const express = require("express");
 const path = require("path");
 require("./db");
 const Contact = require("./models/Contact");
-const session = require("express-session");
+
 
 const app = express();
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(session({
-    secret: "mysecretkey",
-    resave: false,
-    saveUninitialized: true
-}));
+
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
@@ -69,6 +65,8 @@ app.post("/delete/:id", async (req, res) => {
     }
 });
 
-app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log("Server running on port " + PORT);
 });
