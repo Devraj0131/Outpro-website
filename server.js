@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 require("./db");
-const Contact = require("./models/Contact");
+const Contact = require("./models/contact");
 
 
 const app = express();
