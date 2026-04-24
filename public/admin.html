@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body style="background:#0f172a; color:white; font-family:Arial; padding:20px;">
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h1>📊 Admin Dashboard</h1>
+        <a href="/" style="color:white;">← Back to Website</a>
+    </div>
+    
+    <h3 style="margin-top:10px;color:#cbd5f5;">Manage Contact Messages</h3>
+
+    <p id="count"></p>
+
+    <input type="text" id="search" placeholder="Search messages..."
+        style="padding:10px; width:100%; margin-bottom:15px; border-radius:6px; border:none;">
+
+    <table border="1" cellpadding="10" style="width:100%; margin-top:20px;">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="table-body">
+            <!-- Data will appear here -->
+        </tbody>
+    </table>
+
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>
