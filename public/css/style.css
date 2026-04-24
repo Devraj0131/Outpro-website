@@ -693,15 +693,22 @@ button:hover {
 
     .navbar {
         position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .menu-toggle {
         display: block;
+        font-size: 26px;
+        cursor: pointer;
         position: absolute;
         right: 20px;
         top: 15px;
+        z-index: 1001;
     }
 
+   
     .nav-links {
         display: none;
         flex-direction: column;
@@ -712,9 +719,16 @@ button:hover {
         left: 0;
         text-align: center;
         padding: 20px 0;
+        z-index: 1000;
     }
 
+    
     .nav-links.active {
         display: flex;
+    }
+
+    .nav-button {
+        display: none;
+        
     }
 }
