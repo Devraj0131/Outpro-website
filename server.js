@@ -2,9 +2,15 @@ const express = require("express");
 const path = require("path");
 require("./db");
 const Contact = require("./models/contact");
+const session = require("express-session");
 
 
 const app = express();
+app.use(session({
+    secret: "mysecretkey",
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -57,10 +63,14 @@ app.post("/admin-login", (req, res) => {
         username === process.env.ADMIN_USER &&
         password === process.env.ADMIN_PASS
     ) {
+
+        req.session.isAdmin = true;
         res.send("success");
+
     } else {
         res.status(401).send("Invalid credentials");
     }
+
 });
 
 app.get("/api/contacts", async (req, res) => {
@@ -78,7 +88,13 @@ app.post("/delete/:id", async (req, res) => {
 });
 
 app.get("/admin", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "admin.html"));
+
+    if (req.session.isAdmin) {
+
+        res.sendFile(path.join(__dirname, "public", "admin.html"));
+    } else {
+        res.redirect("/admin-login.html");
+    }
 });
 
 const PORT = process.env.PORT || 3000;
