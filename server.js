@@ -47,6 +47,8 @@ app.post("/contact", async (req, res) => {
     }
 });
 
+
+
 app.post("/admin-login", (req, res) => {
 
     const { username, password } = req.body;
@@ -73,6 +75,10 @@ app.post("/delete/:id", async (req, res) => {
     } catch (err) {
         res.status(500).send("Error deleting message");
     }
+});
+
+app.get("/admin", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "admin.html"));
 });
 
 const PORT = process.env.PORT || 3000;
