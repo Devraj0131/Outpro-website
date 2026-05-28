@@ -47,8 +47,18 @@ app.post("/contact", async (req, res) => {
     }
 });
 
-app.get("/admin", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "admin.html"));
+app.post("/admin-login", (req, res) => {
+
+    const { username, password } = req.body;
+
+    if (
+        username === process.env.ADMIN_USER &&
+        password === process.env.ADMIN_PASS
+    ) {
+        res.send("success");
+    } else {
+        res.status(401).send("Invalid credentials");
+    }
 });
 
 app.get("/api/contacts", async (req, res) => {
